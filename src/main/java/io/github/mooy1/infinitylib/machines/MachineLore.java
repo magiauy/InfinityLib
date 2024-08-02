@@ -22,7 +22,7 @@ public final class MachineLore {
 
     @Nonnull
     public static String energyPerSecond(int energy) {
-        return PREFIX + formatEnergy(energy) + " J/s";
+        return PREFIX + format(energy) + " J/t";
     }
 
     @Nonnull
