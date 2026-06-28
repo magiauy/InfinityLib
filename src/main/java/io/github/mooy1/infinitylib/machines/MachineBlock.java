@@ -100,8 +100,12 @@ public final class MachineBlock extends AbstractMachineBlock {
 
         MachineBlockRecipe recipe = getOutput(input);
         if (recipe != null) {
-            ItemStack rem = menu.pushItem(recipe.output.clone(), layout.outputSlots());
-            if (rem == null || rem.getAmount() < recipe.output.getAmount()) {
+            ItemStack output = recipe.output;
+            if (output == null || output.getType().isAir()) {
+                return false;
+            }
+            ItemStack rem = menu.pushItem(output.clone(), layout.outputSlots());
+            if (rem == null || rem.getAmount() < output.getAmount()) {
                 recipe.consume();
                 if (menu.hasViewer()) {
                     menu.replaceExistingItem(getStatusSlot(), PROCESSING_ITEM);
